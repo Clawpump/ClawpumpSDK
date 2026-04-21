@@ -1,0 +1,63 @@
+{
+  "name": "@clawpump/sdk",
+  "version": "0.2.0",
+  "description": "TypeScript SDK for the ClawPump Solana trading intelligence and swap execution API",
+  "license": "MIT",
+  "author": "ClawPump <dev@clawpump.tech>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Clawpump/ClawpumpSDK.git"
+  },
+  "homepage": "https://github.com/Clawpump/ClawpumpSDK#readme",
+  "bugs": {
+    "url": "https://github.com/Clawpump/ClawpumpSDK/issues"
+  },
+  "keywords": [
+    "clawpump",
+    "solana",
+    "defi",
+    "trading",
+    "sdk",
+    "api",
+    "swap",
+    "ai-agents"
+  ],
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc -p tsconfig.build.json --outDir dist/esm",
+    "build:cjs": "tsc -p tsconfig.build.json --outDir dist/cjs --module commonjs --moduleResolution node",
+    "lint": "tsc --noEmit",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build",
+    "security-check": "grep -ri 'supabase\\|railway\\|localhost\\|4500\\|helius\\|agent-deployer\\|host-shard\\|PLATFORM_MARKUP\\|x402\\|clawpump_session\\|X-Agent-ID' src/ && echo 'FAIL: internal references found' && exit 1 || echo 'PASS: no internal references'"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0",
+    "typescript": "^5.5.0"
+  }
+}

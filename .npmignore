@@ -1,0 +1,8 @@
+src/
+examples/
+tests/
+.github/
+.env.example
+tsconfig.json
+tsconfig.build.json
+.gitignore
